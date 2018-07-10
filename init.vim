@@ -30,7 +30,8 @@ call plug#end()
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
-
+let g:python_host_prog = '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
+let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7'
 
 nnoremap <leader>N :setlocal number!<cr>
 
