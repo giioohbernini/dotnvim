@@ -33,7 +33,6 @@ let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
 let g:python_host_prog = '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
-let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7'
 
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -43,7 +42,6 @@ let NERDTreeMouseMode=2
 let NERDTreeShowHidden=1
 let NERDTreeKeepTreeInNewTab=1
 let g:nerdtree_tabs_open_on_gui_startup=1
-
 
 syntax on
 set background=dark
@@ -57,6 +55,8 @@ set inccommand=split
 set clipboard=unnamed
 set shell=/bin/zsh
 set nospell
+set undofile
+set undodir=~/.config/nvim/undodir
 
 nnoremap <leader>N :setlocal number!<cr>
 nnoremap <leader>; A;<esc>0

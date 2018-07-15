@@ -1,2 +1,5 @@
 plugged
 .netrwhist
+/undodir/*
+
+!/undodir/keepalive
