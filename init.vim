@@ -5,13 +5,17 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'roxma/nvim-completion-manager'
+Plug 'evanleck/vim-svelte'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'jparise/vim-graphql'
+Plug 'ncm2/ncm2'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale' 
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
 "autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -32,7 +36,7 @@ let g:airline#extensions#tabline#formatter = 'jsformatter'
 let g:UltiSnipsEditSplit = 'vertical'
 let g:UltiSnipsSnippetsDir = '~/.config/nvim/UltiSnips'
 
-let g:python_host_prog = '/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7'
+"let g:python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7'
 
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -57,6 +61,7 @@ set shell=/bin/zsh
 set nospell
 set undofile
 set undodir=~/.config/nvim/undodir
+set nowrap
 
 nnoremap <leader>N :setlocal number!<cr>
 nnoremap <leader>; A;<esc>0
@@ -64,6 +69,15 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>f :Ag<space>
+
+" auto opens nerdtree when no files is specicated
+function! StartUp()
+    if 0 == argc()
+        NERDTree
+    end
+endfunction
+
+autocmd VimEnter * call StartUp()
 
 map <C-B> :NERDTreeToggle<CR>
 
@@ -83,7 +97,7 @@ set tabstop=2
 hi Normal guibg=NONE ctermbg=NONE
 
 " Remove arrow instead of tabs
- set nolist
+set nolist
 
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
@@ -125,6 +139,11 @@ nnoremap K :call Ag("<C-R><C-W>") <CR>:cw<CR>
 
 " bind \ (backward slash) to grep shortcut
 nnoremap \ :call Ag("")<left><left>
+nnoremap <leader>\ :call CreateEnhancer("")<left><left>
+
+function! CreateEnhancer(foo)
+  execute ':silent exec "!rvbr.sh '. a:foo .'"'
+endfunction
 
 function! Ag(foo)
   let a:root = system('npm bin | rev | cut -d "/" -f3- | rev')
