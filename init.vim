@@ -9,24 +9,35 @@ Plug 'evanleck/vim-svelte'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jparise/vim-graphql'
 Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'roxma/nvim-yarp'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale' 
 Plug 'jiangmiao/auto-pairs'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 call plug#end()
 
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-"set completeopt=noinsert,menuone,noselect
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 "inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 "inoremap <c-c> <ESC>
 "set shortmess+=c
 
+au User Ncm2PopupOpen set completeopt=noinsert,menuone,noselect
+
 let mapleader="\<space>"
+let g:user_emmet_leader_key=','
+let g:user_emmet_install_global = 0
+let g:user_emmet_settings = {'javascript':{'extends':'jsx','attribute_name':{'class':'className'}}}
+autocmd FileType html,css,javascript EmmetInstall
 
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'unicode'
@@ -62,6 +73,7 @@ set nospell
 set undofile
 set undodir=~/.config/nvim/undodir
 set nowrap
+set scrolloff=5
 
 nnoremap <leader>N :setlocal number!<cr>
 nnoremap <leader>; A;<esc>0
@@ -80,6 +92,7 @@ endfunction
 autocmd VimEnter * call StartUp()
 
 map <C-B> :NERDTreeToggle<CR>
+map <C-N><C-B> :NERDTreeFind<CR>
 
 " Ajusta o tamanho de tab
 set shiftwidth=2
@@ -134,8 +147,8 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
-" bind K to grep word under cursor
-nnoremap K :call Ag("<C-R><C-W>") <CR>:cw<CR>
+" bind K to Ag word under cursor
+nnoremap K :Ag <C-R><C-W><CR>
 
 " bind \ (backward slash) to grep shortcut
 nnoremap \ :call Ag("")<left><left>
