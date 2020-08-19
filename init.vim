@@ -37,7 +37,7 @@ let mapleader="\<space>"
 let g:user_emmet_leader_key=','
 let g:user_emmet_install_global = 0
 let g:user_emmet_settings = {'javascript':{'extends':'jsx','attribute_name':{'class':'className'}}}
-autocmd FileType html,css,javascript EmmetInstall
+autocmd FileType html,css,javascript,php EmmetInstall
 
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols = 'unicode'
@@ -81,6 +81,7 @@ nnoremap <leader>ev :vsplit ~/.config/nvim/init.vim<cr>
 nnoremap <leader>sv :source ~/.config/nvim/init.vim<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <leader>f :Ag<space>
+nnoremap <leader>c :Prettier<cr>
 
 " auto opens nerdtree when no files is specicated
 function! StartUp()
