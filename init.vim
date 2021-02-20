@@ -21,6 +21,7 @@ Plug 'honza/vim-snippets'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 autocmd BufEnter * call ncm2#enable_for_buffer()
