@@ -164,3 +164,16 @@ function! Ag(foo)
   let a:root = system('npm bin | rev | cut -d "/" -f3- | rev')
   execute 'Ag '. a:foo .' ' . a:root 
 endfunction
+
+" =============
+" Folding rules
+" =============
+"
+" zo - opens folds
+" zc - closes fold
+" zm - increases auto fold depth
+" zr - reduces auto fold depth
+
+set foldmethod=indent
+set foldlevel=1
+set foldclose=all
